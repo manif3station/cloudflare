@@ -35,7 +35,7 @@ That compose file is intended to be used as the Cloudflare service definition be
 dashboard docker up -d cloudflare
 ```
 
-The shipped runtime now builds a custom Cloudflare image from a multi-stage Dockerfile, runs the service as `root`, compiles a Perl startup helper to `/opt/startup`, copies the required PAR runtime `libcrypt` dependency into the final image, stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared`, and then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
+The shipped runtime now builds a custom Cloudflare image from a multi-stage Dockerfile, runs the service as `root`, compiles a Perl startup helper to `/opt/startup` from a glibc-compatible Perl builder, copies the required PAR runtime `libcrypt` dependency into the final image, stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared`, and then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
 
 ## Developer Dashboard Feature Added
 

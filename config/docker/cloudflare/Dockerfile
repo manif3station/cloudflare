@@ -1,4 +1,4 @@
-FROM perl:5.38 AS builder
+FROM perl:5.36 AS builder
 
 RUN cpan App::cpanminus \
  && cpanm --notest PAR::Packer

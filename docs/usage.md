@@ -111,6 +111,6 @@ At container start the compiled `/opt/startup` binary:
 - fixes ownership to `root:root`
 - executes `cloudflared --no-autoupdate`
 
-The Dockerfile also stages `libcrypt.so.1` into the final `cloudflare/cloudflared:latest` image because the PAR-packed startup binary is not fully standalone on that base image.
+The Dockerfile also stages `libcrypt.so.1` into the final `cloudflare/cloudflared:latest` image because the PAR-packed startup binary is not fully standalone on that base image, and it builds the binary from `perl:5.36` so the produced glibc requirements stay compatible with current `cloudflared` runtime images.
 
 The compose service runs as `root` because the startup binary must create and populate `/etc/cloudflared` before `cloudflared` starts.

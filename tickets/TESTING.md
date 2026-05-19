@@ -28,9 +28,10 @@ cover -report text
 - Docker covered suite passed
 - Docker image build passed for `config/docker/cloudflare/Dockerfile`
 - Docker startup runtime smoke check passed for the built image
+- remote `dashboard docker compose` proof passed against a real project using the installed skill path
 - `lib/Cloudflare/Manager.pm` reached `100.0%` statement coverage
 - `lib/Cloudflare/Manager.pm` reached `100.0%` subroutine coverage
-- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, multi-stage Dockerfile shipping, Perl startup source shipping, root runtime handoff into `/etc/cloudflared`, MIT license docs, and `.env` version alignment with `Changes`
+- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, multi-stage Dockerfile shipping, Perl startup source shipping, root runtime handoff into `/etc/cloudflared`, runtime glibc-compatible builder selection, MIT license docs, and `.env` version alignment with `Changes`
 - latest covered result:
 
 ```text
@@ -58,4 +59,16 @@ docker run --rm \
   cloudflare-skill-startup-smoke \
   --version
 rm -rf "$tmpdir"
+```
+
+Remote compose proof:
+
+```bash
+ssh <remote-host> '
+cd ~/path/to/project &&
+export cloudflare_DDDC=~/.developer-dashboard/skills/cloudflare/config/docker/cloudflare &&
+dashboard docker compose config &&
+dashboard docker compose run --rm cloudflare --version &&
+dashboard docker compose up -d cloudflare
+'
 ```

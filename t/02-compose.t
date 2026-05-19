@@ -28,7 +28,7 @@ open my $dockerfile_fh, '<', $dockerfile or die "Unable to read $dockerfile: $!"
 my $dockerfile_text = do { local $/; <$dockerfile_fh> };
 close $dockerfile_fh;
 
-like( $dockerfile_text, qr/^FROM perl:5\.38 AS builder$/m, 'Dockerfile uses a Perl builder stage' );
+like( $dockerfile_text, qr/^FROM perl:5\.36 AS builder$/m, 'Dockerfile uses a Perl builder stage that matches cloudflared runtime glibc compatibility' );
 like( $dockerfile_text, qr/cpanm --notest PAR::Packer/, 'Dockerfile installs PAR::Packer' );
 like( $dockerfile_text, qr/pp -o \/build\/startup \/build\/startup\.pl/, 'Dockerfile compiles startup.pl with pp' );
 like( $dockerfile_text, qr/cp \/usr\/lib\/x86_64-linux-gnu\/libcrypt\.so\.1 \/build\/runtime-libs\/usr\/lib\/x86_64-linux-gnu\/libcrypt\.so\.1/, 'Dockerfile stages libcrypt.so.1 for the runtime image' );

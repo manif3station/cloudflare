@@ -103,7 +103,7 @@ ${cloudflare_DDDC}/startup.pl
 The image build comes from:
 
 ```text
-${cloudflare_DDDC}/Dockerfile
+${cloudflare_DDDC}/cloudflare/Dockerfile
 ```
 
 At container start the compiled `/opt/startup` binary:

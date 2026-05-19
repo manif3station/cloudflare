@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.13  2026-05-19
+      - fix the shipped compose build context to use ${cloudflare_DDDC}/cloudflare
+
 0.12  2026-05-19
       - pin the shipped cloudflare compose service to linux/amd64
 

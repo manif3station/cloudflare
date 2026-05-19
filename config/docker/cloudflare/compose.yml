@@ -1,7 +1,7 @@
 services:
   cloudflare:
     build:
-      context: ${cloudflare_DDDC}
+      context: ${cloudflare_DDDC}/cloudflare
       dockerfile: Dockerfile
     platform: linux/amd64
     init: true

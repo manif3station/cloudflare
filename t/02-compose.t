@@ -12,7 +12,7 @@ my $text = do { local $/; <$fh> };
 close $fh;
 
 like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare service' );
-like( $text, qr/build:\n\s+context: \$\{cloudflare_DDDC\}\n\s+dockerfile: Dockerfile/, 'compose builds the custom cloudflare image from cloudflare_DDDC' );
+like( $text, qr/build:\n\s+context: \$\{cloudflare_DDDC\}\/cloudflare\n\s+dockerfile: Dockerfile/, 'compose builds the custom cloudflare image from cloudflare_DDDC/cloudflare' );
 like( $text, qr/^    platform: linux\/amd64$/m, 'compose pins the cloudflare runtime to linux/amd64' );
 unlike( $text, qr/^    image:/m, 'compose does not add a redundant image tag for the build-only service' );
 like( $text, qr/^    user: root$/m, 'compose runs the startup wrapper as root so it can stage /etc/cloudflared' );

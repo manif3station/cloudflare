@@ -32,7 +32,7 @@ The skill also ships:
 That compose file is intended to be used as the Cloudflare service definition behind:
 
 ```bash
-dashboard docker up -d cloudflare
+dashboard docker compose up -d cloudflare
 ```
 
 The shipped runtime now builds a custom Cloudflare image from a multi-stage Dockerfile, runs the service as `root`, compiles a Perl startup helper to `/opt/startup` from a glibc-compatible Perl builder, copies the required PAR runtime `libcrypt` dependency into the final image, stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared`, and then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
@@ -111,7 +111,7 @@ dashboard cloudflare.login
 dashboard cloudflare.create demo-tunnel
 dashboard cloudflare.uuid 11111111-2222-3333-4444-555555555555 demo-tunnel web 80
 dashboard cloudflare.dns demo-tunnel app.example.com
-dashboard docker up -d cloudflare
+dashboard docker compose up -d cloudflare
 ```
 
 Resulting project files:

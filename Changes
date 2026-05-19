@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.11  2026-05-19
+      - fix the released docs and ticket records to use dashboard docker compose up -d cloudflare
+
 0.10  2026-05-19
       - build the startup PAR binary on perl:5.36 so the shipped runtime stays glibc-compatible with cloudflare/cloudflared:latest on older hosts
       - record a remote dashboard docker compose proof against a real installed-skill environment

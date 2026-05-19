@@ -83,7 +83,7 @@ docker run -u root --rm -it -v "$PWD/tunnel:/root/.cloudflared" cloudflare/cloud
 After login, create, uuid, and dns are complete, start the service through Developer Dashboard:
 
 ```bash
-dashboard docker up -d cloudflare
+dashboard docker compose up -d cloudflare
 ```
 
 The compose config comes from:

@@ -1,0 +1,6 @@
+Revision history for cloudflare
+
+0.01  2026-05-19
+      - bootstrap the Cloudflare Tunnel skill with login, create, uuid, and dns commands
+      - ship Docker compose runtime config for the cloudflare service
+      - add Docker-tested project .env management and tunnel config generation

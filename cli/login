@@ -1,0 +1,10 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
+
+use Cloudflare::Manager ();
+
+exit Cloudflare::Manager->main_login(@ARGV);

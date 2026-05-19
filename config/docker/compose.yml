@@ -1,0 +1,14 @@
+services:
+  cloudflare:
+    image: cloudflare/cloudflared:latest
+    init: true
+    restart: always
+    volumes:
+      - ./tunnel:/var/cloudflared
+    command:
+      - tunnel
+      - --config
+      - /var/cloudflared/config.yml
+      - --post-quantum
+      - run
+      - ${DOMAIN_ID}

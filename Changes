@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.12  2026-05-19
+      - pin the shipped cloudflare compose service to linux/amd64
+
 0.11  2026-05-19
       - fix the released docs and ticket records to use dashboard docker compose up -d cloudflare
 

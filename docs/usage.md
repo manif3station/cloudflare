@@ -92,6 +92,8 @@ The compose config comes from:
 ~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
+The shipped service pins `platform: linux/amd64`.
+
 The shipped startup source comes from:
 
 ```text

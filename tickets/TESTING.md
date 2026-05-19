@@ -31,7 +31,7 @@ cover -report text
 - remote `dashboard docker compose` proof passed against a real project using the installed skill path
 - `lib/Cloudflare/Manager.pm` reached `100.0%` statement coverage
 - `lib/Cloudflare/Manager.pm` reached `100.0%` subroutine coverage
-- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, multi-stage Dockerfile shipping, Perl startup source shipping, root runtime handoff into `/etc/cloudflared`, runtime glibc-compatible builder selection, MIT license docs, and `.env` version alignment with `Changes`
+- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, linux/amd64 platform pinning, multi-stage Dockerfile shipping, Perl startup source shipping, root runtime handoff into `/etc/cloudflared`, runtime glibc-compatible builder selection, MIT license docs, and `.env` version alignment with `Changes`
 - latest covered result:
 
 ```text

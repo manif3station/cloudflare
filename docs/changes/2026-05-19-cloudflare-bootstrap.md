@@ -8,4 +8,5 @@
 - updated the compose runtime to read `${CLOUDFLARE_DOMAIN_ID}`
 - added the shipped `/opt/startup` wrapper and `${UUID}` compose environment support
 - switched the runtime config and credentials handoff to `/etc/cloudflared`
+- updated the compose startup mount to `${cloudflare_DDDC}/startup`
 - added Docker-tested Perl coverage for the command and file-generation paths

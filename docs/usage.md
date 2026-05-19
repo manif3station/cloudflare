@@ -95,7 +95,7 @@ The compose config comes from:
 The shipped startup wrapper comes from:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/cloudflare/startup
+${cloudflare_DDDC}/startup
 ```
 
 At container start it:

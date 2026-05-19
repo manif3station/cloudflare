@@ -15,7 +15,7 @@ like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare 
 like( $text, qr/image: cloudflare\/cloudflared:latest/, 'compose uses cloudflared latest image' );
 like( $text, qr/environment:\n\s+UUID: \$\{UUID\}/, 'compose exposes UUID in the environment' );
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
-like( $text, qr/- \.\/config\/docker\/cloudflare\/startup:\/opt\/startup:ro/, 'compose mounts the shipped startup wrapper' );
+like( $text, qr/- \$\{cloudflare_DDDC\}\/startup:\/opt\/startup:ro/, 'compose mounts the startup wrapper from cloudflare_DDDC' );
 like( $text, qr/entrypoint:\n\s+- \/opt\/startup/, 'compose runs through the startup entrypoint' );
 like( $text, qr/\/etc\/cloudflared\/config\.yml/, 'compose runs cloudflared against the copied etc config' );
 like( $text, qr/--post-quantum/, 'compose uses the corrected post-quantum flag spelling' );

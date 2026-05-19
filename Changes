@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.05  2026-05-19
+      - switch the startup wrapper mount to ${cloudflare_DDDC}/startup
+
 0.04  2026-05-19
       - add the shipped /opt/startup cloudflared wrapper and UUID compose environment
       - align the runtime on /etc/cloudflared config and credential paths

@@ -7,7 +7,7 @@ services:
       UUID: ${UUID}
     volumes:
       - ./tunnel:/var/cloudflared
-      - ./config/docker/cloudflare/startup:/opt/startup:ro
+      - ${cloudflare_DDDC}/startup:/opt/startup:ro
     entrypoint:
       - /opt/startup
     command:

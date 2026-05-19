@@ -122,7 +122,7 @@ Resulting project files:
 
 The shipped compose runtime also expects:
 
-- `./config/docker/cloudflare/startup` to be available and mounted to `/opt/startup`
+- `${cloudflare_DDDC}/startup` to be available and mounted to `/opt/startup`
 - `./tunnel/cert.pem` to exist before the `cloudflare` service starts
 
 ## Edge Cases

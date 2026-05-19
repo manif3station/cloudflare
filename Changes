@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.06  2026-05-19
+      - change the shipped compose command to --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}
+
 0.05  2026-05-19
       - switch the startup wrapper mount to ${cloudflare_DDDC}/startup
 

@@ -35,7 +35,7 @@ That compose file is intended to be used as the Cloudflare service definition be
 dashboard docker up -d cloudflare
 ```
 
-The shipped runtime now stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared` through a startup wrapper at `/opt/startup`, then starts `cloudflared --no-autoupdate` against the copied `/etc/cloudflared/config.yml`.
+The shipped runtime now stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared` through a startup wrapper at `/opt/startup`, then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
 
 ## Developer Dashboard Feature Added
 

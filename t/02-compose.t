@@ -17,8 +17,8 @@ like( $text, qr/environment:\n\s+UUID: \$\{UUID\}/, 'compose exposes UUID in the
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
 like( $text, qr/- \$\{cloudflare_DDDC\}\/startup:\/opt\/startup:ro/, 'compose mounts the startup wrapper from cloudflare_DDDC' );
 like( $text, qr/entrypoint:\n\s+- \/opt\/startup/, 'compose runs through the startup entrypoint' );
-like( $text, qr/\/etc\/cloudflared\/config\.yml/, 'compose runs cloudflared against the copied etc config' );
 like( $text, qr/--post-quantum/, 'compose uses the corrected post-quantum flag spelling' );
+like( $text, qr/command:\n\s+- --post-quantum\n\s+- tunnel\n\s+- run\n\s+- \$\{CLOUDFLARE_DOMAIN_ID\}/, 'compose uses the expected cloudflared command order' );
 like( $text, qr/\$\{CLOUDFLARE_DOMAIN_ID\}/, 'compose reads CLOUDFLARE_DOMAIN_ID from env' );
 
 my $startup = 'config/docker/cloudflare/startup';

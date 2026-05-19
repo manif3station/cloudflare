@@ -1,5 +1,10 @@
 Revision history for cloudflare
 
+0.09  2026-05-19
+      - copy the required PAR libcrypt runtime library into the final cloudflared image
+      - run the compose service as root so the startup binary can populate /etc/cloudflared
+      - add a real startup smoke check to the release gate so runtime linker failures are caught
+
 0.08  2026-05-19
       - remove the redundant image tag from the cloudflare compose build service
 

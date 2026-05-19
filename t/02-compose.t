@@ -14,6 +14,7 @@ close $fh;
 like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare service' );
 like( $text, qr/build:\n\s+context: \$\{cloudflare_DDDC\}\n\s+dockerfile: Dockerfile/, 'compose builds the custom cloudflare image from cloudflare_DDDC' );
 unlike( $text, qr/^    image:/m, 'compose does not add a redundant image tag for the build-only service' );
+like( $text, qr/^    user: root$/m, 'compose runs the startup wrapper as root so it can stage /etc/cloudflared' );
 like( $text, qr/environment:\n\s+UUID: \$\{UUID\}/, 'compose exposes UUID in the environment' );
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
 like( $text, qr/entrypoint:\n\s+- \/opt\/startup/, 'compose runs through the startup entrypoint' );
@@ -30,6 +31,8 @@ close $dockerfile_fh;
 like( $dockerfile_text, qr/^FROM perl:5\.38 AS builder$/m, 'Dockerfile uses a Perl builder stage' );
 like( $dockerfile_text, qr/cpanm --notest PAR::Packer/, 'Dockerfile installs PAR::Packer' );
 like( $dockerfile_text, qr/pp -o \/build\/startup \/build\/startup\.pl/, 'Dockerfile compiles startup.pl with pp' );
+like( $dockerfile_text, qr/cp \/usr\/lib\/x86_64-linux-gnu\/libcrypt\.so\.1 \/build\/runtime-libs\/usr\/lib\/x86_64-linux-gnu\/libcrypt\.so\.1/, 'Dockerfile stages libcrypt.so.1 for the runtime image' );
+like( $dockerfile_text, qr/COPY --from=builder \/build\/runtime-libs\/ \//, 'Dockerfile copies runtime shared libraries into the final image' );
 like( $dockerfile_text, qr/^FROM cloudflare\/cloudflared:latest$/m, 'Dockerfile uses cloudflared as the runtime stage' );
 like( $dockerfile_text, qr/COPY --from=builder --chmod=755 \/build\/startup \/opt\/startup/, 'Dockerfile copies the compiled startup binary into the runtime image with the executable bit set' );
 

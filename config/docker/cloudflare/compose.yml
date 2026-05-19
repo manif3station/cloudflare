@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     init: true
     restart: always
+    user: root
     environment:
       UUID: ${UUID}
     volumes:

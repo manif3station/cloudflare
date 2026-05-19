@@ -110,3 +110,7 @@ At container start the compiled `/opt/startup` binary:
 - copies `cert.pem` and `config.yml` into `/etc/cloudflared`
 - fixes ownership to `root:root`
 - executes `cloudflared --no-autoupdate`
+
+The Dockerfile also stages `libcrypt.so.1` into the final `cloudflare/cloudflared:latest` image because the PAR-packed startup binary is not fully standalone on that base image.
+
+The compose service runs as `root` because the startup binary must create and populate `/etc/cloudflared` before `cloudflared` starts.

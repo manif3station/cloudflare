@@ -20,6 +20,6 @@ The skill ships a compose runtime definition at:
 ~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
-The compose service uses a project-local `./tunnel:/var/cloudflared` mount, exposes `UUID` in the container environment, builds a custom image from `${cloudflare_DDDC}/Dockerfile`, copies a compiled Perl startup helper to `/opt/startup`, stages the runtime assets into `/etc/cloudflared`, and then runs `cloudflared --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
+The compose service uses a project-local `./tunnel:/var/cloudflared` mount, runs as `root`, exposes `UUID` in the container environment, builds a custom image from `${cloudflare_DDDC}/Dockerfile`, copies a compiled Perl startup helper plus the required `libcrypt` runtime library into the final image, stages the runtime assets into `/etc/cloudflared`, and then runs `cloudflared --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
 
 The compose command reads `${CLOUDFLARE_DOMAIN_ID}` directly from the project `.env`.

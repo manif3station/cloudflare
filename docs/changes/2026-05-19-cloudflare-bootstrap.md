@@ -10,4 +10,5 @@
 - switched the runtime config and credentials handoff to `/etc/cloudflared`
 - updated the compose startup mount to `${cloudflare_DDDC}/startup`
 - updated the compose command order to `--post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`
+- replaced the mounted shell startup script with a Perl startup program compiled through a multi-stage Dockerfile
 - added Docker-tested Perl coverage for the command and file-generation paths

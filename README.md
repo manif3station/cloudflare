@@ -35,7 +35,7 @@ That compose file is intended to be used as the Cloudflare service definition be
 dashboard docker up -d cloudflare
 ```
 
-The shipped runtime now stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared` through a startup wrapper at `/opt/startup`, then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
+The shipped runtime now builds a custom Cloudflare image from a multi-stage Dockerfile, compiles a Perl startup helper to `/opt/startup`, stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared`, and then starts `cloudflared --no-autoupdate --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.
 
 ## Developer Dashboard Feature Added
 
@@ -122,8 +122,12 @@ Resulting project files:
 
 The shipped compose runtime also expects:
 
-- `${cloudflare_DDDC}/startup` to be available and mounted to `/opt/startup`
 - `./tunnel/cert.pem` to exist before the `cloudflare` service starts
+
+The startup binary is built from:
+
+- `${cloudflare_DDDC}/startup.pl`
+- `${cloudflare_DDDC}/Dockerfile`
 
 ## Edge Cases
 

@@ -92,13 +92,19 @@ The compose config comes from:
 ~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
-The shipped startup wrapper comes from:
+The shipped startup source comes from:
 
 ```text
-${cloudflare_DDDC}/startup
+${cloudflare_DDDC}/startup.pl
 ```
 
-At container start it:
+The image build comes from:
+
+```text
+${cloudflare_DDDC}/Dockerfile
+```
+
+At container start the compiled `/opt/startup` binary:
 
 - copies `${UUID}.json` from `/var/cloudflared` to `/etc/cloudflared`
 - copies `cert.pem` and `config.yml` into `/etc/cloudflared`

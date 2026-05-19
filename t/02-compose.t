@@ -12,26 +12,41 @@ my $text = do { local $/; <$fh> };
 close $fh;
 
 like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare service' );
-like( $text, qr/image: cloudflare\/cloudflared:latest/, 'compose uses cloudflared latest image' );
+like( $text, qr/build:\n\s+context: \$\{cloudflare_DDDC\}\n\s+dockerfile: Dockerfile/, 'compose builds the custom cloudflare image from cloudflare_DDDC' );
+like( $text, qr/image: cloudflare\/cloudflared:dashboard/, 'compose tags the built cloudflare image' );
 like( $text, qr/environment:\n\s+UUID: \$\{UUID\}/, 'compose exposes UUID in the environment' );
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
-like( $text, qr/- \$\{cloudflare_DDDC\}\/startup:\/opt\/startup:ro/, 'compose mounts the startup wrapper from cloudflare_DDDC' );
 like( $text, qr/entrypoint:\n\s+- \/opt\/startup/, 'compose runs through the startup entrypoint' );
 like( $text, qr/--post-quantum/, 'compose uses the corrected post-quantum flag spelling' );
 like( $text, qr/command:\n\s+- --post-quantum\n\s+- tunnel\n\s+- run\n\s+- \$\{CLOUDFLARE_DOMAIN_ID\}/, 'compose uses the expected cloudflared command order' );
 like( $text, qr/\$\{CLOUDFLARE_DOMAIN_ID\}/, 'compose reads CLOUDFLARE_DOMAIN_ID from env' );
 
-my $startup = 'config/docker/cloudflare/startup';
-ok( -f $startup, 'startup script exists' );
+my $dockerfile = 'config/docker/cloudflare/Dockerfile';
+ok( -f $dockerfile, 'Dockerfile exists' );
+open my $dockerfile_fh, '<', $dockerfile or die "Unable to read $dockerfile: $!";
+my $dockerfile_text = do { local $/; <$dockerfile_fh> };
+close $dockerfile_fh;
+
+like( $dockerfile_text, qr/^FROM perl:5\.38 AS builder$/m, 'Dockerfile uses a Perl builder stage' );
+like( $dockerfile_text, qr/cpanm --notest PAR::Packer/, 'Dockerfile installs PAR::Packer' );
+like( $dockerfile_text, qr/pp -o \/build\/startup \/build\/startup\.pl/, 'Dockerfile compiles startup.pl with pp' );
+like( $dockerfile_text, qr/^FROM cloudflare\/cloudflared:latest$/m, 'Dockerfile uses cloudflared as the runtime stage' );
+like( $dockerfile_text, qr/COPY --from=builder --chmod=755 \/build\/startup \/opt\/startup/, 'Dockerfile copies the compiled startup binary into the runtime image with the executable bit set' );
+
+my $startup = 'config/docker/cloudflare/startup.pl';
+ok( -f $startup, 'startup.pl exists' );
 open my $startup_fh, '<', $startup or die "Unable to read $startup: $!";
 my $startup_text = do { local $/; <$startup_fh> };
 close $startup_fh;
 
-like( $startup_text, qr/^#!\/bin\/sh$/m, 'startup script uses sh' );
-like( $startup_text, qr/cp "\/var\/cloudflared\/\$\{UUID\}\.json" "\/etc\/cloudflared\/\$\{UUID\}\.json"/, 'startup script copies the UUID credential file' );
-like( $startup_text, qr/cp \/var\/cloudflared\/cert\.pem \/etc\/cloudflared\/cert\.pem/, 'startup script copies cert.pem' );
-like( $startup_text, qr/cp \/var\/cloudflared\/config\.yml \/etc\/cloudflared\/config\.yml/, 'startup script copies config.yml' );
-like( $startup_text, qr/chmod \+x \/opt\/startup/, 'startup script makes /opt/startup executable' );
-like( $startup_text, qr/exec cloudflared --no-autoupdate "\$@"/, 'startup script execs cloudflared without autoupdate' );
+like( $startup_text, qr/^#!\/usr\/bin\/env perl$/m, 'startup.pl uses Perl' );
+like( $startup_text, qr/use File::Copy qw\(copy\);/, 'startup.pl uses File::Copy' );
+like( $startup_text, qr/use File::Path qw\(make_path\);/, 'startup.pl uses File::Path' );
+like( $startup_text, qr/\$ENV\{UUID\}/, 'startup.pl reads UUID from the environment' );
+like( $startup_text, qr/copy\( "\/var\/cloudflared\/\$uuid\.json", "\/etc\/cloudflared\/\$uuid\.json" \)/, 'startup.pl copies the UUID credential file' );
+like( $startup_text, qr/copy\( '\/var\/cloudflared\/cert\.pem', '\/etc\/cloudflared\/cert\.pem' \)/, 'startup.pl copies cert.pem' );
+like( $startup_text, qr/copy\( '\/var\/cloudflared\/config\.yml', '\/etc\/cloudflared\/config\.yml' \)/, 'startup.pl copies config.yml' );
+like( $startup_text, qr/chown 0, 0, "\/etc\/cloudflared\/\$uuid\.json"/, 'startup.pl chowns the UUID credential file to root' );
+like( $startup_text, qr/exec 'cloudflared', '--no-autoupdate', \@ARGV/, 'startup.pl execs cloudflared without autoupdate' );
 
 done_testing;

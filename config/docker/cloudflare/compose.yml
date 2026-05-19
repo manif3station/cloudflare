@@ -1,13 +1,15 @@
 services:
   cloudflare:
-    image: cloudflare/cloudflared:latest
+    build:
+      context: ${cloudflare_DDDC}
+      dockerfile: Dockerfile
+    image: cloudflare/cloudflared:dashboard
     init: true
     restart: always
     environment:
       UUID: ${UUID}
     volumes:
       - ./tunnel:/var/cloudflared
-      - ${cloudflare_DDDC}/startup:/opt/startup:ro
     entrypoint:
       - /opt/startup
     command:

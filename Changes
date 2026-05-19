@@ -2,6 +2,7 @@ Revision history for cloudflare
 
 0.03  2026-05-19
       - switch the shipped cloudflare compose service to CLOUDFLARE_DOMAIN_ID
+      - align skill .env version with the released changelog and add a version gate test
 
 0.02  2026-05-19
       - move the shipped compose asset to config/docker/cloudflare/compose.yml

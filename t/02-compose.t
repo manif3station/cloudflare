@@ -4,7 +4,7 @@ use warnings;
 
 use Test::More;
 
-my $file = 'config/docker/compose.yml';
+my $file = 'config/docker/cloudflare/compose.yml';
 ok( -f $file, 'compose config exists' );
 
 open my $fh, '<', $file or die "Unable to read $file: $!";

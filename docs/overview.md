@@ -17,7 +17,7 @@ The implementation keeps its state inside the target project:
 The skill ships a compose runtime definition at:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/compose.yml
+~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
 The compose service uses a project-local `./tunnel:/var/cloudflared` mount and runs `cloudflared` with `--config /var/cloudflared/config.yml`.

@@ -10,7 +10,7 @@ Package the Cloudflare Tunnel project bootstrap into a governed `cloudflare` ski
 - add `dashboard cloudflare.create`
 - add `dashboard cloudflare.uuid`
 - add `dashboard cloudflare.dns`
-- ship `config/docker/compose.yml`
+- ship `config/docker/cloudflare/compose.yml`
 - persist project-local Cloudflare values in `./.env`
 - generate `./tunnel/config.yml`
 - document and Docker-test the workflow

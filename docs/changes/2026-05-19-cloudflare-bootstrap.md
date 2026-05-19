@@ -4,5 +4,5 @@
 - added `dashboard cloudflare.login`, `dashboard cloudflare.create`, `dashboard cloudflare.uuid`, and `dashboard cloudflare.dns`
 - added project `.env` persistence for tunnel id, UUID, web target, and DNS hostname values
 - added `./tunnel/config.yml` generation with a mounted `/var/cloudflared` credentials path
-- added the compose runtime definition at `config/docker/compose.yml`
+- moved the compose runtime definition to `config/docker/cloudflare/compose.yml`
 - added Docker-tested Perl coverage for the command and file-generation paths

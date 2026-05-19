@@ -87,5 +87,5 @@ dashboard docker up -d cloudflare
 The compose config comes from:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/compose.yml
+~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```

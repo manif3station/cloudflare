@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.02  2026-05-19
+      - move the shipped compose asset to config/docker/cloudflare/compose.yml
+
 0.01  2026-05-19
       - bootstrap the Cloudflare Tunnel skill with login, create, uuid, and dns commands
       - ship Docker compose runtime config for the cloudflare service

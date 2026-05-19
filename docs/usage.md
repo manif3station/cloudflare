@@ -32,6 +32,8 @@ CLOUDFLARE_DOMAIN_ID=demo-tunnel
 
 The command persists both `CLOUDFLARE_DOMAIN_ID` and `DOMAIN_ID` in the project `.env`.
 
+The shipped compose runtime reads `CLOUDFLARE_DOMAIN_ID`.
+
 ## UUID
 
 ```bash

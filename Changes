@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.03  2026-05-19
+      - switch the shipped cloudflare compose service to CLOUDFLARE_DOMAIN_ID
+
 0.02  2026-05-19
       - move the shipped compose asset to config/docker/cloudflare/compose.yml
 

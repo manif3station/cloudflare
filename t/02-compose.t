@@ -15,6 +15,6 @@ like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare 
 like( $text, qr/image: cloudflare\/cloudflared:latest/, 'compose uses cloudflared latest image' );
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
 like( $text, qr/--post-quantum/, 'compose uses the corrected post-quantum flag spelling' );
-like( $text, qr/\$\{DOMAIN_ID\}/, 'compose reads DOMAIN_ID from env' );
+like( $text, qr/\$\{CLOUDFLARE_DOMAIN_ID\}/, 'compose reads CLOUDFLARE_DOMAIN_ID from env' );
 
 done_testing;

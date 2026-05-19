@@ -124,6 +124,8 @@ Resulting project files:
 
 If `dashboard cloudflare.create` is run with no argument and the project `.env` does not contain `CLOUDFLARE_DOMAIN_ID` or `DOMAIN_ID`, the command fails with a clear error instead of inventing a tunnel identifier.
 
+The shipped compose service now reads `CLOUDFLARE_DOMAIN_ID` directly.
+
 If `dashboard cloudflare.uuid` is run without a `UUID`, the command fails before writing `./tunnel/config.yml`.
 
 If `dashboard cloudflare.dns` is run without a hostname argument and without `CLOUDFLARE_DOMAIN_NAME` or `DOMAIN_NAME` in `.env`, the command fails before calling Docker.

@@ -21,3 +21,5 @@ The skill ships a compose runtime definition at:
 ```
 
 The compose service uses a project-local `./tunnel:/var/cloudflared` mount and runs `cloudflared` with `--config /var/cloudflared/config.yml`.
+
+The compose command reads `${CLOUDFLARE_DOMAIN_ID}` directly from the project `.env`.

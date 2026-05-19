@@ -5,4 +5,5 @@
 - added project `.env` persistence for tunnel id, UUID, web target, and DNS hostname values
 - added `./tunnel/config.yml` generation with a mounted `/var/cloudflared` credentials path
 - moved the compose runtime definition to `config/docker/cloudflare/compose.yml`
+- updated the compose runtime to read `${CLOUDFLARE_DOMAIN_ID}`
 - added Docker-tested Perl coverage for the command and file-generation paths

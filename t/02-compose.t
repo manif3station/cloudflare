@@ -13,7 +13,7 @@ close $fh;
 
 like( $text, qr/^services:\n  cloudflare:\n/m, 'compose declares the cloudflare service' );
 like( $text, qr/build:\n\s+context: \$\{cloudflare_DDDC\}\n\s+dockerfile: Dockerfile/, 'compose builds the custom cloudflare image from cloudflare_DDDC' );
-like( $text, qr/image: cloudflare\/cloudflared:dashboard/, 'compose tags the built cloudflare image' );
+unlike( $text, qr/^    image:/m, 'compose does not add a redundant image tag for the build-only service' );
 like( $text, qr/environment:\n\s+UUID: \$\{UUID\}/, 'compose exposes UUID in the environment' );
 like( $text, qr/- \.\/tunnel:\/var\/cloudflared/, 'compose mounts the project tunnel directory' );
 like( $text, qr/entrypoint:\n\s+- \/opt\/startup/, 'compose runs through the startup entrypoint' );

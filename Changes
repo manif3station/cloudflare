@@ -1,5 +1,8 @@
 Revision history for cloudflare
 
+0.08  2026-05-19
+      - remove the redundant image tag from the cloudflare compose build service
+
 0.07  2026-05-19
       - replace the mounted shell startup wrapper with a Perl startup binary built by a multi-stage Dockerfile
 

@@ -3,7 +3,6 @@ services:
     build:
       context: ${cloudflare_DDDC}
       dockerfile: Dockerfile
-    image: cloudflare/cloudflared:dashboard
     init: true
     restart: always
     environment:

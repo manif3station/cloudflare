@@ -50,7 +50,7 @@ Generated `./tunnel/config.yml`:
 ```yaml
 tunnel: 11111111-2222-3333-4444-555555555555
 url: http://web:80
-credentials-file: /var/cloudflared/11111111-2222-3333-4444-555555555555.json
+credentials-file: /etc/cloudflared/11111111-2222-3333-4444-555555555555.json
 protocol: quic
 warp-routing:
   enabled: true
@@ -91,3 +91,16 @@ The compose config comes from:
 ```text
 ~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
+
+The shipped startup wrapper comes from:
+
+```text
+~/projects/skills/skills/cloudflare/config/docker/cloudflare/startup
+```
+
+At container start it:
+
+- copies `${UUID}.json` from `/var/cloudflared` to `/etc/cloudflared`
+- copies `cert.pem` and `config.yml` into `/etc/cloudflared`
+- fixes ownership to `root:root`
+- executes `cloudflared --no-autoupdate`

@@ -83,7 +83,7 @@ sub harness {
     my $config = _slurp( File::Spec->catfile( $cwd, 'tunnel', 'config.yml' ) );
     like( $config, qr/^tunnel: uuid-123$/m, 'uuid writes tunnel id into config' );
     like( $config, qr/^url: http:\/\/nginx:8080$/m, 'uuid writes target web container url' );
-    like( $config, qr{^credentials-file: /var/cloudflared/uuid-123\.json$}m, 'uuid writes mounted credentials path' );
+    like( $config, qr{^credentials-file: /etc/cloudflared/uuid-123\.json$}m, 'uuid writes runtime credentials path' );
     like( _slurp( File::Spec->catfile( $cwd, '.env' ) ), qr/^UUID=uuid-123$/m, 'uuid stores UUID in env file' );
 }
 

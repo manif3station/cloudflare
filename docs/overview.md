@@ -20,6 +20,6 @@ The skill ships a compose runtime definition at:
 ~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
-The compose service uses a project-local `./tunnel:/var/cloudflared` mount and runs `cloudflared` with `--config /var/cloudflared/config.yml`.
+The compose service uses a project-local `./tunnel:/var/cloudflared` mount, exposes `UUID` in the container environment, mounts a shipped startup wrapper to `/opt/startup`, copies the runtime assets into `/etc/cloudflared`, and then runs `cloudflared` with `--config /etc/cloudflared/config.yml`.
 
 The compose command reads `${CLOUDFLARE_DOMAIN_ID}` directly from the project `.env`.

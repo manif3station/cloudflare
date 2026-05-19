@@ -28,11 +28,11 @@ cover -report text
 - Docker covered suite passed
 - `lib/Cloudflare/Manager.pm` reached `100.0%` statement coverage
 - `lib/Cloudflare/Manager.pm` reached `100.0%` subroutine coverage
-- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, MIT license docs, and `.env` version alignment with `Changes`
+- tests cover login tunnel-dir creation, create command env persistence, env fallback resolution, uuid config generation, dns route command generation, wrapper JSON output, wrapper usage failures, compose shipping, startup wrapper shipping, `/etc/cloudflared` runtime handoff, MIT license docs, and `.env` version alignment with `Changes`
 - latest covered result:
 
 ```text
-Files=5, Tests=66
+Files=5, Tests=77
 lib/Cloudflare/Manager.pm  100.0  79.3  61.2  100.0
 ```
 

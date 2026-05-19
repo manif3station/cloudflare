@@ -35,7 +35,7 @@ That compose file is intended to be used as the Cloudflare service definition be
 dashboard docker up -d cloudflare
 ```
 
-The shipped runtime uses the mounted `/var/cloudflared` path consistently. The original draft command included a misspelled `--post-quantum` flag and an `/etc/cloudflared` credentials path that would not match the requested volume mount, so this skill corrects both to keep the workflow runnable.
+The shipped runtime now stages the project-local tunnel assets from `/var/cloudflared` into `/etc/cloudflared` through a startup wrapper at `/opt/startup`, then starts `cloudflared --no-autoupdate` against the copied `/etc/cloudflared/config.yml`.
 
 ## Developer Dashboard Feature Added
 
@@ -119,6 +119,11 @@ Resulting project files:
 - `./tunnel/config.yml`
 - `./tunnel/11111111-2222-3333-4444-555555555555.json` after the Cloudflare create/login flow populates credentials
 - `./.env` with `UUID`, `CLOUDFLARE_DOMAIN_ID`, `DOMAIN_ID`, `WEB_CONTAINER`, `WEB_CONTAINER_PORT`, and `CLOUDFLARE_DOMAIN_NAME`
+
+The shipped compose runtime also expects:
+
+- `./config/docker/cloudflare/startup` to be available and mounted to `/opt/startup`
+- `./tunnel/cert.pem` to exist before the `cloudflare` service starts
 
 ## Edge Cases
 

@@ -3,12 +3,17 @@ services:
     image: cloudflare/cloudflared:latest
     init: true
     restart: always
+    environment:
+      UUID: ${UUID}
     volumes:
       - ./tunnel:/var/cloudflared
+      - ./config/docker/cloudflare/startup:/opt/startup:ro
+    entrypoint:
+      - /opt/startup
     command:
       - tunnel
       - --config
-      - /var/cloudflared/config.yml
+      - /etc/cloudflared/config.yml
       - --post-quantum
       - run
       - ${CLOUDFLARE_DOMAIN_ID}

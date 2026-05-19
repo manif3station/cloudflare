@@ -286,7 +286,7 @@ sub write_tunnel_config {
     open my $fh, '>', $file or die "Unable to write $file: $!";
     print {$fh} "tunnel: $uuid\n";
     print {$fh} "url: http://$web_container:$web_port\n";
-    print {$fh} "credentials-file: /var/cloudflared/$uuid.json\n";
+    print {$fh} "credentials-file: /etc/cloudflared/$uuid.json\n";
     print {$fh} "protocol: quic\n";
     print {$fh} "warp-routing:\n";
     print {$fh} "  enabled: true\n";

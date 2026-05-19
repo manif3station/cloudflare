@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+mkdir -p /etc/cloudflared
+
+cp "/var/cloudflared/${UUID}.json" "/etc/cloudflared/${UUID}.json"
+cp /var/cloudflared/cert.pem /etc/cloudflared/cert.pem
+cp /var/cloudflared/config.yml /etc/cloudflared/config.yml
+
+chown 0:0 "/etc/cloudflared/${UUID}.json"
+chown 0:0 /etc/cloudflared/cert.pem
+chown 0:0 /etc/cloudflared/config.yml
+
+chmod +x /opt/startup
+
+exec cloudflared --no-autoupdate "$@"

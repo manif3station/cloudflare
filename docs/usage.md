@@ -89,7 +89,7 @@ dashboard docker compose up -d cloudflare
 The compose config comes from:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
+~/.developer-dashboard/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
 The shipped service pins `platform: linux/amd64`.

@@ -17,7 +17,7 @@ The implementation keeps its state inside the target project:
 The skill ships a compose runtime definition at:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
+~/.developer-dashboard/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
 The compose service uses a project-local `./tunnel:/var/cloudflared` mount, pins the runtime to `linux/amd64`, runs as `root`, exposes `UUID` in the container environment, builds a custom image from `${cloudflare_DDDC}/cloudflare`, compiles the Perl startup helper from a glibc-compatible builder, copies that helper plus the required `libcrypt` runtime library into the final image, stages the runtime assets into `/etc/cloudflared`, and then runs `cloudflared --post-quantum tunnel run ${CLOUDFLARE_DOMAIN_ID}`.

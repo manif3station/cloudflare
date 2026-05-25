@@ -26,7 +26,7 @@ The commands create and reuse a project-local `./tunnel/` folder, update the cur
 The skill also ships:
 
 ```text
-~/projects/skills/skills/cloudflare/config/docker/cloudflare/compose.yml
+~/.developer-dashboard/skills/cloudflare/config/docker/cloudflare/compose.yml
 ```
 
 That compose file is intended to be used as the Cloudflare service definition behind:

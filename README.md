@@ -49,16 +49,10 @@ This skill adds:
 
 ## Installation
 
-Install through Developer Dashboard:
+Install the skill into Developer Dashboard by repo name:
 
 ```bash
-dashboard skills install ~/projects/skills/skills/cloudflare
-```
-
-If your local DD wrapper exposes the singular alias, the same skill can also be installed through:
-
-```bash
-dashboard skill install cloudflare
+dashboard skills install cloudflare
 ```
 
 ## CLI Usage
